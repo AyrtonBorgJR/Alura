@@ -33,10 +33,10 @@ def exibir_subtitulo(texto):
 
 def exibir_opcoes():
     print("Menu de Opções:")
-    print("1. Cadastrar Restaurante")
+    print("1. Cadastro de Restaurante")
     print("2. Listar Restaurante")
     print("3. Ativar Restaurante")
-    print("4. Cadastrar Clientes")
+    print("4. Cadastro de Clientes")
     print("5. Listar Clientes")
     print("6. Sair\n")
 
@@ -62,15 +62,46 @@ def escolher_opcao():
         opcao_invalida()
 
 def cadastrar_restaurante():
-    exibir_subtitulo('Cadastrar restaurantes')
-    nome_rest = input('Digite o nome do restaurante que deseja cadastrar: ')
-    categoria = input(f'Digite a categoria do restaurante {nome_rest}: ')
-    dados = {'nome':nome_rest, "categoria":categoria, 'ativo':False}
+    caminho = input("Oque deseja?\n 1. Novo Cadastro\n 2. Alterar Cadastro")
     
-    restaurantes.append(dados)
-    print(f'O restaurante {nome_rest} foi cadastrado com sucesso')
-    voltar_ao_menu_principal()
+    if caminho == "1":
+        exibir_subtitulo('Cadastrar restaurantes')
+        nome_rest = input('Digite o nome do restaurante que deseja cadastrar: ')
+        categoria = input(f'Digite a categoria do restaurante {nome_rest}: ')
+        dados = {'nome':nome_rest, "categoria":categoria, 'ativo':False}
+    
+        restaurantes.append(dados)
+        print(f'O restaurante {nome_rest} foi cadastrado com sucesso')
+        voltar_ao_menu_principal()
 
+    if caminho == "2":
+        print("Qual restaurante você deseja alterar:")
+        print(f"{'Cod':<5} | {'Nome':<10} | {'Categoria':<10}")
+        for idx, restaurante in enumerate(restaurantes, start=1):
+            print(f"{idx:<5} | {restaurante['nome']:<10} | {restaurante['categoria']:<10}")
+
+    codigo = int(input("\nDigite o código do restaurante: ")) - 1
+
+    if 0 <= codigo < len(restaurantes):
+        print("\nDeseja alterar o quê?")
+        print("1. Nome\n2. Categoria\n")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == '1':
+            restaurantes[codigo]['nome'] = input("Novo nome: ")
+        elif opcao == '2':
+            restaurantes[codigo]['categoria'] = input("Nova categoria: ")
+        else:
+            print("Opção inválida.")
+    else:
+        print("Código inválido.")
+
+    print("\nRestaurantes atualizados:")
+    print(f"{'Cod':<5} | {'Nome':<10} | {'Categoria':<10}")
+    for idx, restaurante in enumerate(restaurantes, start=1):
+        print(f"{idx:<5} | {restaurante['nome']:<10} | {restaurante['categoria']:<10}")
+    voltar_ao_menu_principal()
+            
 def listar_restaurante():
     exibir_subtitulo('Listando os restaurantes: ')
     print(f'{"ESTABELECIMENTO".ljust(30)} | {"CATEGORIA".ljust(28)} | {"STATUS"}')
