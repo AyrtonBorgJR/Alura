@@ -1,8 +1,14 @@
 import os
 
+clientes = [{'nome': 'Catiço', 'categoria':'Viadão', 'idade':'240'},
+           {'nome': 'Carniça', 'categoria':'Trans', 'idade':'28'},
+           {'nome': 'Troço', 'categoria':'Bicha', 'idade':'22'}]
+
 restaurantes = [{'nome':'Restaurante Pai e mãe', "categoria":"Brasileiro", "ativo":False},
                 {'nome':'Pizzaiolo', "categoria":"Pizza", "ativo":False},
                 {'nome':'Rosca Sushi', "categoria":"Japones", "ativo":True}]
+
+
 
 def exibir_nome():
     print("""
@@ -30,7 +36,9 @@ def exibir_opcoes():
     print("1. Cadastrar Restaurante")
     print("2. Listar Restaurante")
     print("3. Ativar Restaurante")
-    print("4. Sair\n")
+    print("4. Cadastrar Clientes")
+    print("5. Listar Clientes")
+    print("6. Sair\n")
 
 def escolher_opcao():
     try:
@@ -43,6 +51,10 @@ def escolher_opcao():
         elif opcao_escolhida == 3:
             ativar_restaurante()
         elif opcao_escolhida == 4:
+            cadastrar_clientes()
+        elif opcao_escolhida == 5:
+            listar_clientes()
+        elif opcao_escolhida == 6:
             encerrar_programa()
         else:
             opcao_invalida()
@@ -64,7 +76,7 @@ def listar_restaurante():
     print(f'{"ESTABELECIMENTO".ljust(30)} | {"CATEGORIA".ljust(28)} | {"STATUS"}')
     for restaurante in restaurantes:
         ativo = "Ativado" if restaurante["ativo"] else "Inoperante"
-        print(f'* {restaurante['nome'].ljust(28)} | {restaurante['categoria'].ljust(28)} | {ativo}')
+        print(f"* {restaurante['nome'].ljust(28)} | {restaurante['categoria'].ljust(28)} | {ativo}")
 
     voltar_ao_menu_principal()
 
@@ -81,6 +93,25 @@ def ativar_restaurante():
             print(msg)
     if not restaurante_encontrado:
         print("Restaurante não encontrado")
+    voltar_ao_menu_principal()
+
+def cadastrar_clientes():
+    exibir_subtitulo('Cadastrar clientes')
+    nome_cli = input('Digite o nome do cliente que deseja cadastrar: ')
+    categoria = input(f'Digite a categoria do cliente {nome_cli}: ')
+    idade = input(f'Digite a idade do cliente: ')
+    dados = {'nome':nome_cli, "categoria":categoria, 'idade':idade}
+    
+    clientes.append(dados)
+    print(f'O restaurante {nome_cli} foi cadastrado com sucesso')
+    voltar_ao_menu_principal()
+
+def listar_clientes():
+    exibir_subtitulo('Listando Clientes: ')
+    print(f'{"CLIENTE".ljust(30)} | {"CATEGORIA".ljust(28)} | {"IDADE"}')
+    for cliente in clientes:
+        print(f"* {cliente['nome'].ljust(28)} | {cliente['categoria'].ljust(28)} | {cliente['idade']}")
+              
     voltar_ao_menu_principal()
 
 def encerrar_programa():
