@@ -54,14 +54,6 @@ def escolher_opcao():
             listar_clientes()
         elif opcao_escolhida == 6:
             encerrar_programa()
-        elif opcao_escolhida == 7:
-            nova_chave()
-        elif opcao_escolhida == 8:
-            del_chave()
-        elif opcao_escolhida == 9:
-            quads()
-        elif opcao_escolhida == 10:
-            dicionario()
         else:
             opcao_invalida()
     except:
@@ -164,45 +156,6 @@ def main():
     exibir_opcoes()
     escolher_opcao()
 
-def nova_chave():
-    chave = input("Digite o nome da chave: ")
-    print("Restaurantes disponíveis:")
-    for i, r in enumerate(restaurantes):
-        print(f"{i} - {r['nome']}")
-    try:
-        cod = int(input("Escolha o restaurante: "))
-    except ValueError:
-        print("Digite um número válido!")
-        return
-    
-    if 0 <= cod < len(restaurantes):
-        restaurantes[cod][chave] = input("Descreva: ")
-        print(restaurantes)
-    else:
-        print("Código inválido!")
-    voltar_ao_menu_principal()
-
-def quads():
-    quadrados = {}
-
-    for numero in range(1, 6):
-        quadrados[numero] = numero ** 2
-
-    print(quadrados)
-
-def del_chave():
-    chave = input("Digite o nome da chave: ")
-    cod = int(input("Escolha o restaurante: "))
-    del restaurantes[cod][chave]
-    print(restaurantes)
-
-def dicionario():
-    chave = input("Qual chave você deseja consultar? ")
-    for restaurante in restaurantes:
-        if chave in restaurante:
-            print("A chave existe!")
-            return
-    print("Chave inexistente")
 
 if __name__ == '__main__':
     main()
