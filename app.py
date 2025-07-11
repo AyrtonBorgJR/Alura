@@ -9,6 +9,7 @@ restaurantes = [{'nome':'Restaurante Pai e mãe', "categoria":"Brasileiro", "ati
                 {'nome':'Rosca Sushi', "categoria":"Japones", "ativo":True}]
 
 def exibir_nome():
+    """Insere o titulo antes de qualquer função"""
     print("""
 ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
 ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗  ██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝
@@ -24,12 +25,14 @@ def voltar_ao_menu_principal():
     main()
 
 def exibir_subtitulo(texto):
+    """Exibe o subtitulo das funções em formato padrão"""
     os.system("clear")
     lin = '*' * (len(texto) + 4)
     print(f"{lin}\n{texto}\n{lin}")
     print("")
 
 def exibir_opcoes():
+    """Apenas exibe o texto com as opções disponiveis"""
     print("Menu de Opções:")
     print("1. Cadastro de Restaurante")
     print("2. Listar Restaurante")
@@ -39,6 +42,12 @@ def exibir_opcoes():
     print("6. Sair\n")
 
 def escolher_opcao():
+    """Lê uma opção numérica do usuário e executa a função correspondente do menu.
+
+Solicita que o usuário digite um número inteiro que define qual ação será realizada.
+Chama a função relacionada à opção escolhida.
+
+Exceções são tratadas para opções inválidas."""
     try:
         opcao_escolhida = int(input("Selecione: ")) 
         print(f"Você escolheu a opção {opcao_escolhida}")
@@ -60,6 +69,13 @@ def escolher_opcao():
         opcao_invalida()
 
 def cadastrar_restaurante():
+    """Esta função você pode seguir 2 caminhos.
+        1. Para inserir um novo elemento no cadastro de restaurantes
+            Input STR no dicionário
+        2. Para alterar o cadastro
+            Input numero para selação de restaurante
+            Input dos dados (STR) que seja alterar """
+    
     caminho = input("Oque deseja?\n 1. Novo Cadastro\n 2. Alterar Cadastro")
     
     if caminho == "1":
@@ -101,6 +117,7 @@ def cadastrar_restaurante():
     voltar_ao_menu_principal()
             
 def listar_restaurante():
+    """Função para listar os estabelecimentos cadastrados no dicionário"""
     exibir_subtitulo('Listando os restaurantes: ')
     print(f'{"ESTABELECIMENTO".ljust(30)} | {"CATEGORIA".ljust(28)} | {"STATUS"}')
     for restaurante in restaurantes:
@@ -110,6 +127,7 @@ def listar_restaurante():
     voltar_ao_menu_principal()
 
 def ativar_restaurante():
+    """Essa função faz a mudança de Inoperante para Operante e vice e versa"""
     exibir_subtitulo('Alterar estado do restaurante')
     identificacao_restaurante = input("Digite o nome do restaurante que você deseja alterar o estado: ")
     restaurante_encontrado = False
@@ -144,18 +162,22 @@ def listar_clientes():
     voltar_ao_menu_principal()
 
 def encerrar_programa():
+    """Exibe o encerramento do app"""
     exibir_subtitulo('Finalizando o app')
 
 def opcao_invalida():
+    """"Exibe Opção invalida quando o usuário errar o Input de outras funções"""
     print("Opção Invalida!\n")
     voltar_ao_menu_principal()
 
 def main():
+    """Limpa a tela, exibe o nome do programa, apresenta as opções do menu principal
+    e chama a função para o usuário escolher uma opção."""
     os.system('clear')
     exibir_nome()
     exibir_opcoes()
     escolher_opcao()
 
-
 if __name__ == '__main__':
     main()
+
