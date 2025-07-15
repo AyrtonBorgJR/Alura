@@ -1,3 +1,30 @@
+class ContaBancaria:
+
+    def __init__(self, titular='', saldo=0):
+        self.nome = titular
+        self.saldo = saldo
+        self.ativo = False
+
+    def __str__(self):
+        situacao = ''
+        if self.ativo == True:
+            situacao = "Ativo"
+        else:
+            situacao = "Inativo"
+        saldo_formatado = f'{self.saldo:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+        return f'Titular da Conta: {self.nome:<18} | Saldo: R${saldo_formatado:<10} | Situação: {situacao}'
+
+    @classmethod
+    def atv_dstv_conta(self, conta):
+        conta.ativo = not conta.ativo
+
+cl1 = ContaBancaria("Tião do Gás", 10000)
+cl2 = ContaBancaria("Gastão Bahiano", 1200)
+
+ContaBancaria.atv_dstv_conta(cl2)
+
+print(f'{cl1}\n{cl2}')
+
 """
 1. Crie uma classe chamada ContaBancaria com um construtor que aceita os parâmetros titular e saldo.
 Inicie o atributo ativo como False por padrão.
