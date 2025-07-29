@@ -1,4 +1,4 @@
-from Modelos.restaurante3 import Restaurante
+from oo_Sabor_Exp.modelos.restaurante_3 import Restaurante
 
 restaunrante_bom = Restaurante('praca', 'Gourmet')
 restaurante_ruim = Restaurante('MexFood', 'Mexicano')
