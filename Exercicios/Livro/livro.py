@@ -1,13 +1,43 @@
+class Livro:
+    livros = []
+
+    def __init__(self, titulo, autor, ano_publicacao):
+        self._titulo = titulo
+        self._autor = autor
+        self._ano_publicacao = ano_publicacao
+        self._disponivel = True
+        Livro.livros.append(self)
+
+    def __str__(self):
+        return f'{self._titulo} | {self._autor} | {self._ano_publicacao} | {self.ativo:<3}'
+    
+    @classmethod
+    def listar_livros(cls):
+        print(f'{"Titulo":<18} | {"Autor":<15} | {"Publicação":<10} | {"Disponivel":<3}' )
+        for livro in cls.livros:
+            print(f'{livro._titulo:<18} | {livro._autor:<15} | {livro._ano_publicacao:<10} | {livro.ativo:<3}')
+    
+    def emprestar(self):
+        self._disponivel = False 
+
+    @staticmethod
+    if 
+
+    @property
+    def ativo(self):
+        return "✓" if self._disponivel else "⌧"
+
+
+livro1 = Livro("Jantar Secreto", "Rafael Montes", "2018")
+livro2 = Livro("Verity", "Colen Hoover", "2016")
+livro3 = Livro("Jester", "GTA", "2025")
+
+livro2.emprestar()
+
+Livro.listar_livros()
+
+
 """
-
-1. Crie uma classe chamada Livro com um construtor que aceita os parâmetros titulo, autor e ano_publicacao.
-Inicie um atributo chamado disponivel como True por padrão.
-
-2. Na classe Livro, adicione um método especial str que retorna uma mensagem formatada com o título, 
-autor e ano de publicação do livro. Crie duas instâncias da classe Livro e imprima essas instâncias.
-
-3. Adicione um método de instância chamado emprestar à classe Livro que define o atributo disponivel
-como False. Crie uma instância da classe, chame o método emprestar e imprima se o livro está disponível ou não.
 
 4. Adicione um método estático chamado verificar_disponibilidade à classe Livro que recebe um ano como
 parâmetro e retorna uma lista dos livros disponíveis publicados nesse ano.
