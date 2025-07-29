@@ -35,12 +35,15 @@ class Livro:
     def ativo(self):
         return "✓" if self._disponivel else "⌧"
 
-livro1 = Livro("Jantar Secreto", "Rafael Montes", "2025")
-livro2 = Livro("Verity", "Colen Hoover", "2025")
-livro3 = Livro("Jester", "GTA", "2025")
+livro1 = Livro("Jantar Secreto", "Rafael Montes", "2018")
+livro2 = Livro("Verity", "Colen Hoover", "2018")
+livro3 = Livro("Jester", "GTA", "2018")
 
 livro2.emprestar()
 
-ver2025 = Livro.verificar_disponibilidade("2025")
+if livro2._disponivel:
+    print(f'Livro {livro2._titulo} Disponivel')
+else:
+    print(f'Livro {livro2._titulo} Indisponivel')
 
-
+v2018 = Livro.verificar_disponibilidade("2018")
