@@ -1,3 +1,10 @@
+class Avaliacao:
+    def __init__(self, cliente, nota):
+    self._cliente = cliente
+    self._nota = nota
+
+"""from modelos.avaliacao import Avaliacao:"""
+
 class Restaurante():
     estabelecimentos = []
 
@@ -5,6 +12,7 @@ class Restaurante():
         self._nome = nome.title() #Titulo
         self._categoria = categoria.upper() #Tudo em MAIUSCULO
         self._ativo = False
+        self._avaliacao = []
         Restaurante.estabelecimentos.append(self)
 
     def __str__(self):
@@ -22,4 +30,8 @@ class Restaurante():
 
     def alt_status(self):
         self._ativo = not self._ativo
+
+    def receber_avaliacao(self, cliente, nota):
+        avaliacao = Avaliacao(cliente, nota)
+        self._avaliacao.append(avaliacao)
 
