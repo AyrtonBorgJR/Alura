@@ -6,6 +6,7 @@ class Restaurante():
         self._categoria = categoria.upper() #Tudo em MAIUSCULO
         self._ativo = False
         self._avaliacao = []
+        self._cardapio = []
         Restaurante.estabelecimentos.append(self)
 
     def __str__(self):
@@ -36,7 +37,12 @@ class Restaurante():
         qtde_notas = len(self._avaliacao)
         media = round(soma_notas / qtde_notas,1)
         return media
+
+    def adicionar_no_cardapio(self, item): 
+        if isinstance(item, ItemCardapio): # Ele compara a instancia ao que já existe para definir se vai ou não.
+            self._cardapio.append(item)
 """from modelos.restaurante import Restaurante"""
+
 class Avaliacao:
     def __init__(self, cliente, nota):
         self._cliente = cliente
@@ -72,6 +78,9 @@ restaurante_3 = Restaurante('Japa', 'Japones')
 bebida_suco = Bebida("Suco de Melancia", 9.0, "Grande")
 
 prato_macarrao = Prato("Bolonhesa", 35.0, "Macarrona classica da Nona")
+restaurante_bom.adicionar_no_cardapio(bebida_suco)
+restaurante_bom.adicionar_no_cardapio(prato_macarrao)
+
 
 restaurante_bom.receber_avaliacao("Sebastian", 10)
 restaurante_bom.receber_avaliacao("Aloi", 8)
