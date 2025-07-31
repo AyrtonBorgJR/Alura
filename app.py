@@ -42,19 +42,46 @@ class Avaliacao:
         self._cliente = cliente
         self._nota = nota
 """from modelos.avaliacao import Avaliacao:"""
+class ItemCardapio:
+    def __init__(self, nome, preco):
+        self._nome = nome
+        self._preco = preco
+
+class Prato(ItemCardapio):
+    def __init__(self, nome, preco, descricao):
+        super().__init__(nome, preco)
+        self._descricao = descricao
+
+    def __str__(self):
+        return self._nome
+"""from modelos.cardapio.prato import Prato"""
+
+class Bebida(ItemCardapio):
+    def __init__(self, nome, preco, tamanho):
+        super().__init__(nome, preco)
+        self._tamanho = tamanho
+
+    def __str__(self):
+        return self._nome
+"""from modelos.cardapio.bebida importe Bebida"""
 
 restaurante_bom = Restaurante('praca', 'Gourmet')
 restaurante_ruim = Restaurante('MexFood', 'Mexicano')
 restaurante_3 = Restaurante('Japa', 'Japones')
 
-restaurante_bom.receber_avaliacao("mamek", 10)
+bebida_suco = Bebida("Suco de Melancia", 9.0, "Grande")
+
+prato_macarrao = Prato("Bolonhesa", 35.0, "Macarrona classica da Nona")
+
+restaurante_bom.receber_avaliacao("Sebastian", 10)
 restaurante_bom.receber_avaliacao("Aloi", 8)
-restaurante_bom.receber_avaliacao("Ogai", 1)
+restaurante_bom.receber_avaliacao("Jotaro", 1)
 
 restaurante_3.alt_status()
 
 def main():
-    Restaurante.lista_restaurantes()
+    print(bebida_suco)
+    print(prato_macarrao)
 
 if __name__ == '__main__':
     main()
