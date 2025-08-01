@@ -1,37 +1,50 @@
-class Avaliacao:
-    def __init__(self, cliente, nota):
-    self._cliente = cliente
-    self._nota = nota
-
-"""from modelos.avaliacao import Avaliacao:"""
-
 class Restaurante():
+    """Representa um restaurante com avaliações, cardápio e status ativo/inativo."""
+
     estabelecimentos = []
 
     def __init__(self, nome, categoria):
-        self._nome = nome.title() #Titulo
-        self._categoria = categoria.upper() #Tudo em MAIUSCULO
+        """
+        Inicializa um novo restaurante.
+
+        Args:
+            nome (str): Nome do restaurante.
+            categoria (str): Categoria do restaurante (ex.: 'Gourmet', 'Mexicano').
+        """
+
+        self._nome = nome.title() 
+        self._categoria = categoria.upper() 
         self._ativo = False
-        self._avaliacao = []
-        Restaurante.estabelecimentos.append(self)
+        self._avaliacao = [] # Lista de avaliações recebidas
+        self._cardapio = [] # Lista de itens do cardapio
+        Restaurante.estabelecimentos.append(self) 
 
     def __str__(self):
         return f'{self._nome} | {self._categoria}'
 
-    @classmethod
+    @classmethod 
     def lista_restaurantes(cls):
-        print(f'{"Restaurante":<25} | {"Categoria":<10} | {"Status":<6}' )
+        """Exibe todos os restaurantes cadastrados no console."""
+        print(f'{"Restaurante":<25} | {"Categoria":<10} | {"Avaliação":<9} | {"Status":<3}' )
         for restaurante in cls.estabelecimentos:
-            print(f'{restaurante._nome:<25} | {restaurante._categoria:<10} | {restaurante.ativo:<6}')
+            print(f'{restaurante._nome:<25} | {restaurante._categoria:<10} | {restaurante.media_avaliacoes:<9} | {restaurante.ativo:<3}')
 
     @property
     def ativo(self):
+        """Retorna um símbolo indicando se o restaurante está ativo ou não."""
         return "✓" if self._ativo else "⌧"
 
     def alt_status(self):
+        """Alterna o status do restaurante entre ativo e inativo."""
         self._ativo = not self._ativo
 
     def receber_avaliacao(self, cliente, nota):
+        """
+        Adiciona uma nova avaliação para o restaurante.
+
+        Args:
+            cliente (str): Nome do cliente.
+            nota (float): Nota da avaliação (0 a 10).
+        """
         avaliacao = Avaliacao(cliente, nota)
         self._avaliacao.append(avaliacao)
-
